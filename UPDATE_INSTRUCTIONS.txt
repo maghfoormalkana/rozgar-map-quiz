@@ -1,0 +1,36 @@
+FILE REPLACEMENT INSTRUCTIONS (Windows)
+========================================
+
+Step 1: Extract the new ZIP
+----------------------------
+Extract `rozgar-quiz-portal.zip` to a NEW folder, e.g.:
+  C:\Users\maghf\Downloads\rozgar-quiz-portal-new
+
+Step 2: Open Command Prompt in your CURRENT client folder
+----------------------------------------------------------
+  cd "C:\Users\maghf\Downloads\rozgar-quiz-portal (4)\client"
+
+Step 3: Run these copy commands ONE BY ONE
+------------------------------------------
+
+copy "C:\Users\maghf\Downloads\rozgar-quiz-portal-new\client\src\index.css" src\
+copy "C:\Users\maghf\Downloads\rozgar-quiz-portal-new\client\tailwind.config.js" .\
+copy "C:\Users\maghf\Downloads\rozgar-quiz-portal-new\client\src\pages\HomePage.jsx" src\pages\
+copy "C:\Users\maghf\Downloads\rozgar-quiz-portal-new\client\src\pages\QuizSetup.jsx" src\pages\
+copy "C:\Users\maghf\Downloads\rozgar-quiz-portal-new\client\src\pages\QuizPage.jsx" src\pages\
+copy "C:\Users\maghf\Downloads\rozgar-quiz-portal-new\client\src\pages\ResultPage.jsx" src\pages\
+copy "C:\Users\maghf\Downloads\rozgar-quiz-portal-new\client\src\pages\AdminLogin.jsx" src\pages\
+copy "C:\Users\maghf\Downloads\rozgar-quiz-portal-new\client\src\components\Navbar.jsx" src\components\
+copy "C:\Users\maghf\Downloads\rozgar-quiz-portal-new\client\src\components\Footer.jsx" src\components\
+copy "C:\Users\maghf\Downloads\rozgar-quiz-portal-new\client\src\components\Modal.jsx" src\components\
+copy "C:\Users\maghf\Downloads\rozgar-quiz-portal-new\client\src\components\LoadingSpinner.jsx" src\components\
+
+Step 4: Reinstall dependencies
+------------------------------
+  npm install
+
+Step 5: Start the app
+---------------------
+  npm run dev
+
+That's it! Open http://localhost:3000 in your browser.
