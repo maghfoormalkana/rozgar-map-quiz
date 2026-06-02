@@ -60,11 +60,21 @@ app.use('/api/stats', require('./routes/statsRoutes'))
 app.use('/api/quiz', require('./routes/quizRoutes'))
 
 // Health check
+// app.get('/api/health', (req, res) => {
+//   res.json({
+//     status: 'OK',
+//     timestamp: new Date().toISOString(),
+//     dbConnected: mongoose.connection.readyState === 1
+//   })
+// })
+
 app.get('/api/health', (req, res) => {
   res.json({
     status: 'OK',
     timestamp: new Date().toISOString(),
-    dbConnected: mongoose.connection.readyState === 1
+    dbConnected: mongoose.connection.readyState === 1,
+    mongoState: mongoose.connection.readyState,
+    hasMongoUri: !!process.env.MONGODB_URI
   })
 })
 
