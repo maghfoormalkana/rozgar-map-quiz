@@ -68,16 +68,28 @@ app.use('/api/quiz', require('./routes/quizRoutes'))
 //   })
 // })
 
-app.get('/api/health', (req, res) => {
-  res.json({
-    status: 'OK',
-    timestamp: new Date().toISOString(),
-    dbConnected: mongoose.connection.readyState === 1,
-    mongoState: mongoose.connection.readyState,
-    hasMongoUri: !!process.env.MONGODB_URI
-  })
-})
+app.get('/api/health', async (req, res) => {
+  try {
+    const connectDB = require('./config/db')
 
+    await connectDB()
+
+    res.json({
+      status: 'OK',
+      dbConnected: mongoose.connection.readyState === 1,
+      mongoState: mongoose.connection.readyState,
+      hasMongoUri: !!process.env.MONGODB_URI
+    })
+  } catch (error) {
+    res.status(500).json({
+      status: 'FAILED',
+      error: error.message,
+      errorName: error.name,
+      mongoState: mongoose.connection.readyState,
+      hasMongoUri: !!process.env.MONGODB_URI
+    })
+  }
+})
 // Error handling
 app.use((err, req, res, next) => {
   console.error(err.stack)
