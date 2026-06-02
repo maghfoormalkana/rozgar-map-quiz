@@ -1,26 +1,18 @@
 const mongoose = require('mongoose')
 
-let isConnected = false
-
 const connectDB = async () => {
-  if (isConnected) {
-    console.log('Using existing MongoDB connection')
-    return
-  }
-
   try {
-    console.log('MONGODB_URI exists:', !!process.env.MONGODB_URI)
+    console.log('Attempting MongoDB connection...')
 
     const conn = await mongoose.connect(process.env.MONGODB_URI, {
       serverSelectionTimeoutMS: 30000
     })
 
-    isConnected = true
+    console.log('MongoDB Connected:', conn.connection.host)
 
-    console.log(`MongoDB Connected: ${conn.connection.host}`)
     return conn
   } catch (error) {
-    console.error('MongoDB Connection Error:')
+    console.error('FULL MONGODB ERROR:')
     console.error(error)
     throw error
   }
